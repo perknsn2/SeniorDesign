@@ -1,0 +1,20 @@
+Note: These keys have different access levels. Use appropriate level key per use case.
+
+1) iothubowner - registry read, registry write, service connect, device connect	
+	a) Primary key: JQYn9Gh3r1wx9T2w/gTrftlLOtv6L6qqhPtE+rpzSqk=
+	b) Secondary key: 5kYXGyBj+XgVqsm4Qip716T6zvFseQT6y8vFFcJi6zI=
+	c) Connection string - primary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=JQYn9Gh3r1wx9T2w/gTrftlLOtv6L6qqhPtE+rpzSqk=
+ 	d) Connection string - secondary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=5kYXGyBj+XgVqsm4Qip716T6zvFseQT6y8vFFcJi6zI=
+
+2) service - service connect	
+	a) Primary key: 4PsMpuNuuM9+bTzJOvcVZFut6fFrOO2Oi5CnCINKlvI=
+	b) Secondary key: I+2quPCyUsXUo0UOas3pmLRsV3GtAT9ivH/AxYZsOpI=
+	c) Connection string - primary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=4PsMpuNuuM9+bTzJOvcVZFut6fFrOO2Oi5CnCINKlvI=
+ 	d) Connection string - secondary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=I+2quPCyUsXUo0UOas3pmLRsV3GtAT9ivH/AxYZsOpI=
+
+3) device - device connect	
+	a) Primary key: oAjGghez4GFscFolp8Pjw0ZKj5zQLPVoU1WV5JwEYag=
+	b) Secondary key: xKwY1MaVQiMXF0A++UVEzXisD/xQhKsqUifT1jTl2U0=
+	c) Connection string - primary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=oAjGghez4GFscFolp8Pjw0ZKj5zQLPVoU1WV5JwEYag=
+ 	d) Connection string - secondary key: HostName=VMSHub.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=xKwY1MaVQiMXF0A++UVEzXisD/xQhKsqUifT1jTl2U0=
+
