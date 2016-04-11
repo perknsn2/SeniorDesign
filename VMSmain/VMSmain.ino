@@ -1,4 +1,5 @@
-#include <SoftwareSerial.h>
+#include <SoftwareSerial.h> //Library for SPI communications with ESP8266
+#include <Wire.h> //Library for I2C communications
 
 #define ESP8266_rxPin 4
 #define ESP8266_txPin 5
@@ -36,6 +37,8 @@ void setup() {
   pinMode(ESP8266_rxPin, INPUT);
   pinMode(ESP8266_txPin, OUTPUT);
 
+  Wire.begin();        // join i2c bus (address optional for master)
+  
   ESP8266.begin(9600);//default baudrate for ESP
   ESP8266.listen();//not needed unless using other software serial instances
   Serial.begin(115200); //for status and debug
@@ -46,6 +49,19 @@ void setup() {
 
 //Start functions
 void loop() {
-  
+  //I2C read
+   // request reading from sensor
+  Wire.requestFrom(112, 2);    // request 2 bytes from slave device #112
+  // device address is specified in datasheet
+  // the address specified in the datasheet is 224 (0xE0)
+  // but i2c adressing uses the high 7 bits so it's 112
+  if (2 <= Wire.available()) { // if two bytes were received
+    reading = Wire.read();  // receive high byte (overwrites previous reading)
+    reading = reading << 8;    // shift high byte to be high 8 bits
+    reading |= Wire.read(); // receive low byte as lower 8 bits
+    Serial.println(reading);   // print the reading
+  }
+
+  delay(500);
   
 }
