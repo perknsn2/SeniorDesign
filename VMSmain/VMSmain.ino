@@ -1,8 +1,8 @@
-#include <SoftwareSerial.h> //Library for SPI communications with ESP8266
+#include <SoftwareSerial.h> //Library for UART communications with ESP8266
 #include <Wire.h> //Library for I2C communications
 
-#define ESP8266_rxPin 4
-#define ESP8266_txPin 5
+#define ESP8266_RX 4
+#define ESP8266_TX 5
 
 //SSID + KEY
 const char SSID_ESP[] = "Mobile";
@@ -12,7 +12,7 @@ const char SSID_KEY[] = "helloworld";
 const char CWMODE = '1';//CWMODE 1=STATION, 2=APMODE, 3=BOTH
 const char CIPMUX = '1';//CWMODE 0=Single Connection, 1=Multiple Connections
 
-SoftwareSerial ESP8266(ESP8266_rxPin, ESP8266_txPin);// rx tx
+SoftwareSerial ESP8266(ESP8266_RX, ESP8266_TX);// initialize WiFi Module
 
 //Functions
 boolean setup_ESP();
