@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 22 resources" deleteContents="true" description="Delete 22 resources" element1="/adc" element10="/json" element11="/oob" element12="/serial_wifi" element13="/simplelink" element14="/sleep_deepsleep" element15="/spi_demo" element16="/tcp_socket" element17="/ti_rtos_config" element18="/uart_demo" element19="/uart_dma" element2="/antenna_selection" element20="/webclient" element21="/webserver" element22="/wifi_audio_app" element3="/blinky" element4="/connection_policy" element5="/deepsleep_nw" element6="/email" element7="/http_client_demo" element8="/httpserver" element9="/i2c_demo" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="22" stamp="1458974550116"/>
+</session>
