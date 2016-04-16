@@ -7,7 +7,7 @@ boolean setup_ESP(){
   //Checking if module available
   delay(1000);
   Serial.println("1)Checking ESP8266");
-  delay(3000);
+  delay(1000);
   ESP.print("AT\r\n");
   if(read_ESP(keyword_OK,sizeof(keyword_OK),5000,0))//go look for keyword "OK" with a 5sec timeout
     Serial.println("Module ready.");
@@ -18,7 +18,7 @@ boolean setup_ESP(){
   //Reset module
   delay(1000);
   Serial.println("2)Resetting ESP8266");
-  delay(5000);
+  delay(1000);
   ESP.print("AT+RST\r\n");
   if(read_ESP(keyword_ready,sizeof(keyword_OK),5000,0))//go look for keyword "OK" with a 5sec timeout
     Serial.println("Reset successful.");
@@ -28,8 +28,8 @@ boolean setup_ESP(){
 
   //Set to station mode
   delay(1000);
-  Serial.println("3) Setting operation mode");
-  delay(3000);
+  Serial.println("3)Setting operation mode");
+  delay(1000);
   ESP.print("AT+CWMODE=");// set the CWMODE
   ESP.print(CWMODE);//just send what is set in the constant
   ESP.print("\r\n");
@@ -42,7 +42,7 @@ boolean setup_ESP(){
   //Connecting to network
   delay(1000);
   Serial.println("4) Connecting to network");
-  delay(3000);
+  delay(1000);
   ESP.print("AT+CWJAP=\"");// set the SSID AT+CWJAP="SSID","PW"
   ESP.print(SSID_ESP);//from constant 
   ESP.print("\",\"");
@@ -55,13 +55,12 @@ boolean setup_ESP(){
   serial_dump_ESP();
 
   //Check IP Address
-  //Connecting to network
   delay(1000);
-  Serial.println("5) Finding IP Address");
+  Serial.println("5)Finding IP Address");
   delay(5000);
   ESP.print("AT+CIFSR\r\n");
   if(read_ESP(keyword_rn,sizeof(keyword_rn),20000,0)){//look for first \r\n after AT+CIFSR echo - note mode is '0', the ip address is right after this
-  if(read_ESP(keyword_rn,sizeof(keyword_rn),1000,1)){//look for second \r\n, and store everything it receives, mode='1'
+  if(read_ESP(keyword_rn,sizeof(keyword_rn),20000,1)){//look for second \r\n, and store everything it receives, mode='1'
     //store the ip adress in its variable, ip_address[]
     for(int i=1; i<=(scratch_data_from_ESP[0]-sizeof(keyword_rn)+1); i++)//that i<=... is going to take some explaining, see next lines
        ip_address[i] = scratch_data_from_ESP[i];//fill up ip_address with the scratch data received
@@ -74,9 +73,9 @@ boolean setup_ESP(){
     Serial.println("");
   }}//if first \r\n
   else
-  Serial.print("IP ADDRESS FAIL");
+  Serial.print("Failed");
   serial_dump_ESP();
-    
+  Serial.println("--------------------------");
 }
 
 
