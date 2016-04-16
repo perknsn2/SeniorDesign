@@ -49,15 +49,15 @@ boolean setup_ESP(){
   ESP.print(SSID_KEY);//form constant
   ESP.print("\"\r\n");
   if(read_ESP(keyword_OK,sizeof(keyword_OK),10000,0))//Wait for response
-    Serial.println("Conencted.");
+    Serial.println("Connected.");
   else
     Serial.println("Failed.");   
   serial_dump_ESP();
 
-  //Check IP Address
+  /*//Check IP Address
   delay(1000);
   Serial.println("5)Finding IP Address");
-  delay(5000);
+  delay(7000);
   ESP.print("AT+CIFSR\r\n");
   if(read_ESP(keyword_rn,sizeof(keyword_rn),20000,0)){//look for first \r\n after AT+CIFSR echo - note mode is '0', the ip address is right after this
   if(read_ESP(keyword_rn,sizeof(keyword_rn),20000,1)){//look for second \r\n, and store everything it receives, mode='1'
@@ -74,7 +74,7 @@ boolean setup_ESP(){
   }}//if first \r\n
   else
   Serial.print("Failed");
-  serial_dump_ESP();
+  serial_dump_ESP();*/
   Serial.println("--------------------------");
 }
 

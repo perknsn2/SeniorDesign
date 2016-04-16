@@ -19,6 +19,7 @@ boolean read_ESP(const char keyword1[], int key_size, int timeout_val, byte mode
 void timeout_start();
 boolean timeout_check(int timeout_ms);
 void serial_dump_ESP();
+void ping();
 
 //Global Veriables
 unsigned long timeout_start_val;
@@ -58,7 +59,8 @@ void setup(){
 }
 
 void loop(){
-  
+  ping();
+  delay(3000);
 }
 
 
