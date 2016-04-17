@@ -4,7 +4,7 @@ void ping(){
   Serial.println("Pinging google.com");
   delay(1000);
   ESP.print("AT+PING=\"www.google.com\"\r\n");
-  if(read_ESP(keyword_OK,sizeof(keyword_OK),10000,0))//go look for keyword "OK" with a 5sec timeout
+  if(ESP.find("OK"))
     Serial.println("Success.");
   else
     Serial.println("Failed.");

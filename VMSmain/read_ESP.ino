@@ -1,5 +1,5 @@
 //Reads ESP for keywords
-boolean read_ESP(const char keyword1[], int key_size, int timeout_val, byte mode){
+/*boolean read_ESP(const char keyword1[], int key_size, int timeout_val, byte mode){
   timeout_start_val=millis();//for the timeout
   char data_in[20];//this is the buffer - if keyword is longer than 20, then increase this
   int scratch_length=1;//the length of the scratch data array
@@ -57,4 +57,4 @@ boolean read_ESP(const char keyword1[], int key_size, int timeout_val, byte mode
       scratch_length++;
     }    
   } 
-}
+}*/
