@@ -31,6 +31,7 @@ void setup() {
   Serial.println("Hello");
 
   init_gyro();
+  init_accelerometer();
 }
 
 // the loop function runs over and over again until power down or reset
