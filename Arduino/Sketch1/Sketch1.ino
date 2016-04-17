@@ -29,12 +29,8 @@ void setup() {
 
   Serial.begin(9600);
   Serial.println("Hello");
-/*
-  Wire.beginTransmission(MMA8653FC_I2C_ADDRESS);
-  Wire.write(MMA8653FC_CTRL_REG1);
-  Wire.write(CTRL_REG1);
-  Wire.endTransmission(true); 
-  */
+
+  init_gyro();
 }
 
 // the loop function runs over and over again until power down or reset
@@ -44,17 +40,11 @@ void loop() {
   int n;
   uint8_t data;
 
-  Wire.beginTransmission(FXAS21002C_I2C_ADDRESS);
-  Wire.write(FXAS21002C_WHO_AM_I);
-  n = Wire.endTransmission(false);
+  n = read_I2C(FXAS21002C_I2C_ADDRESS, FXAS21002C_WHO_AM_I, &data, 1);
 
   Serial.print("n:");
   Serial.println(n);
 
-  Wire.requestFrom(FXAS21002C_I2C_ADDRESS, 1, true);
-  while (Wire.available()) {
-    data = Wire.read();
-  }
   Serial.println(data, HEX);
   delay(500);
 }
