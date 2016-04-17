@@ -113,12 +113,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Sketch1.ino">
-      <FileType>CppCode</FileType>
-    </None>
+    <ClInclude Include="FXAS21002C.h" />
+    <ClInclude Include="src\_micro-api\libraries\Gyro\src\Gyro.h" />
+    <ClInclude Include="__vm\.Sketch1.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.Sketch1.vsarduino.h" />
+    <ClCompile Include="FXAS21002C.c" />
+    <ClCompile Include="src\_micro-api\libraries\Gyro\src\Gyro.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="i2c.ino" />
+    <None Include="I2C_new.ino" />
+    <None Include="Sketch1.ino" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

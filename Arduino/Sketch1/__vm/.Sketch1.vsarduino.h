@@ -65,4 +65,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <..\Sketch1\Sketch1.ino>
+#include <..\Sketch1\FXAS21002.ino>
+#include <src\_micro-api\libraries\Gyro\src\Gyro.cpp>
+#include <src\_micro-api\libraries\Gyro\src\Gyro.h>
+#include <..\Sketch1\I2C_new.ino>
 #endif
