@@ -40,34 +40,45 @@ void loop() {
 
   int n;
   uint8_t data;
-
+  uint8_t buffer2[6];
+  uint8_t buffer1[6];
+  int x;
+  int y;
+  int z;
+  double accel_x;
+  double accel_y;
+  double accel_z;
+  double gyro_z;
+  
+  
   n = read_I2C(FXAS21002C_I2C_ADDRESS, FXAS21002C_WHO_AM_I, &data, 1);    
   Serial.print("Gyro Device ID: ");
   Serial.println(data, HEX);
+  read_I2C(FXAS21002C_I2C_ADDRESS, X_MSB, buffer2, 6);
+  x = (buffer2[4]<<8) | buffer2[5];
+  gyro_z = (double(x)/32768)*2000;
+  Serial.print("Z-axis angular velocity: ");
+  Serial.print(gyro_z);
+  Serial.println("dps");
 
   
-
   n = read_I2C(MMA8653FC_I2C_ADDRESS,MMA8653FC_WHO_AM_I,&data,1);
   Serial.print("Accelerometer Device ID: ");
-  Serial.println(data, HEX);
-
-  uint8_t buffer[4];
-  uint16_t x;
-  uint16_t y;
-  double accel_x;
-  double accel_y;
-  read_I2C(MMA8653FC_I2C_ADDRESS, X_MSB, buffer, 4);
-  x =((buffer[0]<<8) | buffer[1]) >> 6;
-  accel_x = (double(x)/511)*1.996;
-  y =((buffer[2]<<8) | buffer[3]) >> 6;
-  accel_y = (double(y)/511)*1.996;  
+  Serial.println(data, HEX);  
+  read_I2C(MMA8653FC_I2C_ADDRESS, X_MSB, buffer1, 6);
+  x =((buffer1[0]<<8) | buffer1[1]) >> 6;
+  accel_x = (double(x)/512)*2;
+  y =((buffer1[2]<<8) | buffer1[3]) >> 6;
+  accel_y = (double(y)/512)*2;  
   Serial.print("X-axis acceleration: ");
   Serial.print(accel_x);
   Serial.println("g");
   Serial.print("Y-axis acceleration: ");
   Serial.print(accel_y);
   Serial.println("g");
-  
-  delay(500);
+  //z = (((buffer1[4]<<8) | buffer1[5]) >> 6);
+  //accel_z = double(z)/512;
+  //Serial.println(accel_z);
+  delay(1000);
 }
 
