@@ -28,7 +28,7 @@ void setup() {
   Wire.begin();   //Initialize wire library
 
   Serial.begin(9600);
-  Serial.println("Hello");
+  Serial.println("Hello lets begin");
 
   init_gyro();
   init_accelerometer();
