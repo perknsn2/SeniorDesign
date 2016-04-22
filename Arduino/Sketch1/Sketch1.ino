@@ -21,24 +21,7 @@
 #define MMA8653FC_CTRL_REG1 0x2A
 
 #define CTRL_REG1 0x01
-
-// the setup function runs once when you press reset or power the board
-void setup() {
-  // put your setup code here, to run once:
-  Wire.begin();   //Initialize wire library
-
-  Serial.begin(9600);
-  Serial.println("Hello lets begin");
-
-  init_gyro();
-  init_accelerometer();
-}
-
-// the loop function runs over and over again until power down or reset
-void loop() {
-  Serial.println("hello");
-
-  int n;
+int n;
   uint8_t data;
   uint8_t buffer2[6];
   uint8_t buffer1[6];
@@ -50,6 +33,28 @@ void loop() {
   double accel_z;
   double gyro_z;
   
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // put your setup code here, to run once:
+  Wire.begin();   //Initialize wire library
+
+  Serial.begin(9600);
+  Serial.println("Hello lets begin");
+
+  pinMode(10,OUTPUT);
+  
+  
+  init_gyro();
+  init_accelerometer();
+}
+
+// the loop function runs over and over again until power down or reset
+void loop() {
+
+  
+  digitalWrite(10,HIGH);
+  delay(1000);
+  digitalWrite(10,LOW);
   
   n = read_I2C(FXAS21002C_I2C_ADDRESS, FXAS21002C_WHO_AM_I, &data, 1);    
   Serial.print("Gyro Device ID: ");
@@ -79,6 +84,6 @@ void loop() {
   //z = (((buffer1[4]<<8) | buffer1[5]) >> 6);
   //accel_z = double(z)/512;
   //Serial.println(accel_z);
-  delay(1000);
+  delay(500);
 }
 
