@@ -1,0 +1,44 @@
+package org.ishan.vms.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import org.ishan.vms.database.DatabaseClass;
+import org.ishan.vms.model.*;
+
+public class GPSDataService {
+
+	private HashMap<Long, Data> datas= DatabaseClass.getData();
+	
+	public List<Data> getAllData(){
+		return new ArrayList<Data>(datas.values());
+	}
+	
+	public Data getData(){
+		long id = datas.size();
+		return datas.get(id);
+	}
+	
+	public Data getData(long id){
+		return datas.get(id);
+	}
+	
+	public Data addData(Data data){
+		data.setId(datas.size()+1);
+		data.setDate(new Date());
+		datas.put(data.getId(), data);
+		return data;
+	}
+	
+	public Data removeData(long id){
+		return datas.remove(id);
+	}
+	public Data removeData(){
+		long id = datas.size();
+		return datas.remove(id);
+	}
+	
+	
+}

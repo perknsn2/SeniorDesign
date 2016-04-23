@@ -1,0 +1,5 @@
+package org.ishan.vms.database;
+
+public class DatabaseClass {
+
+}

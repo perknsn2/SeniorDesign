@@ -1,0 +1,6 @@
+<html>
+<body>
+    <h2>Vehicle Monitoring System RESTful Web Service!</h2>
+    <p><a href="/vms/data">Current data.</a>
+</body>
+</html>

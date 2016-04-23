@@ -1,0 +1,31 @@
+package org.ishan.vms.resources;
+
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.ishan.vms.model.Data;
+import org.ishan.vms.service.DataService;
+
+
+
+@Path("/data")
+public class DataResource {
+	DataService dataService = new DataService();
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Data> getMessages(){
+		return dataService.getAllData();
+	}
+	
+	@GET
+	@Path("/{dataId}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String test(@PathParam("dataId") String dataId){
+		return "Got path param " + dataId;
+	}
+}

@@ -1,0 +1,39 @@
+package org.ishan.vms.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.ishan.vms.database.DatabaseClass;
+import org.ishan.vms.model.*;
+
+public class DataService {
+
+	private HashMap<Long, Data> datas= DatabaseClass.getData();
+	
+	public DataService(){
+		datas.put(1L, new Data(1, (float) 1.942));
+		datas.put(2L, new Data(2, (float) 2.942));
+	}
+	
+	public List<Data> getAllData(){
+		return new ArrayList<Data>(datas.values());
+	}
+	
+	public Data getData(long id){
+		return datas.get(id);
+	}
+	
+	public Data addData(Data data){
+		data.setId(datas.size()+1);
+		datas.put(data.getId(), data);
+		return data;
+	}
+	
+	public Data removeMessage(long id){
+		return datas.remove(id);
+	}
+	
+	
+	
+}

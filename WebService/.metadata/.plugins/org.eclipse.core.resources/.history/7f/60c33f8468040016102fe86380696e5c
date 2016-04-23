@@ -1,0 +1,40 @@
+package org.ishan.vms.model;
+
+import java.util.Date;
+
+public class Data {
+	
+	private int data;
+	private Date date;
+	private String testmessage;
+	
+	
+	
+	public Data(int data, String testmessage){
+		this.data = data;
+		this.date = new Date();
+		this.testmessage = testmessage;	
+	}
+	
+	
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getTestmessage() {
+		return testmessage;
+	}
+	public void setTestmessage(String testmessage) {
+		this.testmessage = testmessage;
+	}
+	
+	
+}

@@ -1,0 +1,7 @@
+package org.ishan.vms.database;
+
+import java.util.HashMap;
+
+public class DatabaseClass {
+
+}
