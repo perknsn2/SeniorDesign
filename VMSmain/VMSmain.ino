@@ -8,8 +8,8 @@
 #define ESP_RX 5
 
 //SSID + KEY
-const char SSID_ESP[] = "Mobile";
-const char SSID_KEY[] = "helloworld";
+const char SSID_ESP[] = "CentralPerk";
+const char SSID_KEY[] = "smellycat";
 
 SoftwareSerial ESP(ESP_RX, ESP_TX); //Define ESP8266
 

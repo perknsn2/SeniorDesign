@@ -1,5 +1,5 @@
 //Pings google.com
-void ping(int data){
+void ping(){
    //Checking if module available
   Serial.println("Pinging google.com");
   delay(1000);
