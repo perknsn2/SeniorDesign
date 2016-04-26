@@ -1,0 +1,57 @@
+package org.ishan.vms.resources;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.ishan.vms.model.Data;
+import org.ishan.vms.service.DataService;
+
+
+
+@Path("/data")
+public class DataResource {
+	DataService dataService = new DataService();
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Data> getMessages(){
+		return dataService.getAllData();
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addData(Data data){
+		dataService.addData(data);	
+	}
+	
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	public Data deleteData(@PathParam("id") long id){
+		return dataService.removeData();
+	}
+	
+	@GET
+	@Path("/last")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Data getData(){
+		return dataService.getData();
+	}
+	
+	@GET
+	@Path("/{data}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void createGetData(@PathParam("dataId") long data){
+		dataService.getData(data);
+	}
+	
+	
+	
+}

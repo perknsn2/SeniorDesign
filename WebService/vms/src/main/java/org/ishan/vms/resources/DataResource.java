@@ -28,8 +28,8 @@ public class DataResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Data addData(Data data){
-		return dataService.addData(data);	
+	public void addData(Data data){
+		dataService.addData(data);	
 	}
 	
 	@DELETE
@@ -46,10 +46,10 @@ public class DataResource {
 	}
 	
 	@GET
-	@Path("/{dataId}")
+	@Path("/{data}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Data getData(@PathParam("dataId") long id){
-		return dataService.getData(id);
+	public void createGetData(@PathParam("data") long data){
+		dataService.createGetData(data);
 	}
 	
 	

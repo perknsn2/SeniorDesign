@@ -1,9 +1,0 @@
-package org.ishan.vms.model;
-
-public class Data {
-	
-	private int data;
-	private String Location;
-	
-	
-}

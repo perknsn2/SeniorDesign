@@ -32,6 +32,14 @@ public class DataService {
 		return data;
 	}
 	
+	public void createGetData(long input){
+		Data data = new Data();
+		data.setId(datas.size()+1);
+		data.setDate(new Date());
+		data.setData(input);
+		datas.put(data.getId(), data);
+	}
+	
 	public Data removeData(long id){
 		return datas.remove(id);
 	}

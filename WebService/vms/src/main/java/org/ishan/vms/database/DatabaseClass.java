@@ -10,10 +10,5 @@ public class DatabaseClass {
 	public static HashMap<Long, Data> getData(){
 			return datas;
 	}
-	private static HashMap<Long, GPSData> GPSdatas = new HashMap<>();
-	
-	public static HashMap<Long, GPSData> getGPSData(){
-			return GPSdatas;
-	}
 	
 }
