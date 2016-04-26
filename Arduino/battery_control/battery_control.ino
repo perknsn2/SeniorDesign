@@ -1,4 +1,3 @@
-int analogpin = 1;              //pin that controls NMOS
 const int numReadings = 10;
 int readings[numReadings];      // the readings from the analog input
 int readings2[numReadings];
@@ -11,7 +10,7 @@ double average2 = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(analogpin,OUTPUT);
+  pinMode(A1,OUTPUT);
 
   for (int i = 0; i < numReadings; i++) {
     readings[i] = 0;
@@ -25,7 +24,7 @@ void loop() {
   double value2 = analogRead(A2);            //measures battery temperature
 
  total = total - readings[index];
- total2 = total2 - readings2[index];
+ total2 = total2 - readings2[index];  
  
   // read from the sensor:
   readings[index] = value;
@@ -46,22 +45,38 @@ void loop() {
   // calculate the average:
   average = total / numReadings;
   average2 = total2/numReadings;
-  double battery_average = (average/1024)*5; 
-  double battery_voltage = (2*battery_average); //error
-  Serial.println(battery_average);
+  double Vcc = readVcc()/1000.0;
+  double battery_average = (average/1023)*5.16;           //ADC calculation based on Vcc voltage reference which is not exactly 5V
+  double battery_voltage = ((127*battery_average)/100); //error
+  Serial.println(battery_voltage);
 
-  double battery_temp = (average2/1024)*5;
+  double battery_temp = (average2/1023)*5;
   
 
 
-  if (battery_voltage >= 4) //analog monitors battery voltage 
-    analogWrite(analogpin,0);
-  else if(battery_temp < 2.25 && index == 9)
-    analogWrite(analogpin,0);
+  if (battery_voltage >= 4.2) //analog monitors battery voltage 
+    digitalWrite(A1,LOW);
+  //else if(battery_temp < 2.25 && index == 9)
+  //  analogWrite(analogpin,0);
   else
-    analogWrite(analogpin,255);
+    digitalWrite(A1,HIGH);
     
   
     delay(1000);        // delay in between reads for stability
 
 }
+
+
+long readVcc() {
+  long result;
+  // Read 1.1V reference against AVcc
+  ADMUX = _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1) ;
+  delay(2); // Wait for Vref to settle
+  ADCSRA |= _BV(ADSC); // Convert
+  while (bit_is_set(ADCSRA,ADSC));
+  result = ADCL;
+  result |= ADCH<<8;
+  result = 1125300L / result; // Back-calculate AVcc in mV
+  return result;
+}
+
