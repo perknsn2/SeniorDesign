@@ -32,6 +32,8 @@ int n;
   double accel_y;
   double accel_z;
   double gyro_z;
+  bool acc = 0;
+  bool gy= 0;
   
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -82,8 +84,21 @@ void loop() {
   Serial.print(accel_y);
   Serial.println("g");
   //z = (((buffer1[4]<<8) | buffer1[5]) >> 6);
-  //accel_z = double(z)/512;
+  //accel_z = (double(z)/512)*2;
   //Serial.println(accel_z);
   delay(500);
+
+  if(accel_x > 0.2)
+      acc=1;
+  else
+      acc-0;
+
+  if(gyro_z > 90) 
+    gy = 1;
+   else
+      gy = 0;
+    
+  
+  
 }
 
