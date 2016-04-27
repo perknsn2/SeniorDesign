@@ -1,0 +1,77 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <center style="font-size: 35px;"><p style="font-size: 50px;"><b>Vehicle Monitoring System</b></p>
+        <div><b><i>Last Speed Update:</b></i><p id="updateTime"></p></div>
+        <div><b><i>Speed:</i></b><p id="speed"></p></div>
+        <div><b><i># of Fast Accelerations:</i></b><p id="accel"></p></div>
+        <div><b><i># of Fast Turns</i></b><p id="fastTurns"></p></div></center>
+
+        <script>
+            setInterval(function(){
+                //code goes here that will be run every 5 seconds.
+                var xhrspeed = new XMLHttpRequest();
+                xhrspeed.open('GET', "http://default-environment.2gky8wndgr.us-east-1.elasticbeanstalk.com/vms/data/last", true);
+                xhrspeed.send();
+
+                xhrspeed.onreadystatechange = processRequest;
+
+                function processRequest(e) {
+                    if (xhrspeed.readyState == 4 && xhrspeed.status == 200) {
+                        var response = JSON.parse(xhrspeed.responseText);
+                        document.getElementById("speed").innerHTML=response.data;
+                        document.getElementById("updateTime").innerHTML=response.date;
+                        //alert(response.data);
+                    }
+                }
+            }, 5000);
+        </script>
+        <script>
+            setInterval(function(){
+                //code goes here that will be run every 5 seconds.
+                var xhraccel = new XMLHttpRequest();
+                xhraccel.open('GET', "http://default-environment.2gky8wndgr.us-east-1.elasticbeanstalk.com/vms/count/accel", true);
+                xhraccel.send();
+
+                xhraccel.onreadystatechange = processRequest;
+
+                function processRequest(e) {
+                    if (xhraccel.readyState == 4 && xhraccel.status == 200) {
+                        //var response = JSON.parse(xhr.responseText);
+                        document.getElementById("accel").innerHTML=xhraccel.response;
+                        //document.getElementById("updateTime").innerHTML=response.date;
+                        //alert(response.data);
+                    }
+                }
+            }, 5000);
+        </script>
+        <script>
+            setInterval(function(){
+                //code goes here that will be run every 5 seconds.
+                var xhrgyro = new XMLHttpRequest();
+                xhrgyro.open('GET', "http://default-environment.2gky8wndgr.us-east-1.elasticbeanstalk.com/vms/count/gyro", true);
+                xhrgyro.send();
+
+                xhrgyro.onreadystatechange = processRequest;
+
+                function processRequest(e) {
+                    if (xhrgyro.readyState == 4 && xhrgyro.status == 200) {
+                        document.getElementById("fastTurns").innerHTML=xhrgyro.response;
+                    }
+                }
+            }, 5000);
+        </script>
+    </body>
+</html>
