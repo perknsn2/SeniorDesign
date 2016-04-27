@@ -1,40 +1,39 @@
 #include <SoftwareSerial.h>
 
-#define debug_TX 4
-#define debug_RX 5
+#define OBD_TX 4
+#define OBD_RX 5
 
 //SoftwareSerial debug(debug_RX, debug_TX);
+SoftwareSerial OBD(OBD_RX, OBD_TX);
+//char inData[64];
+//char inChar=-1;
 
-char inData[64];
-char inChar=-1;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(debug_RX, INPUT);
-  pinMode(debug_TX, OUTPUT);
+  pinMode(OBD_RX, INPUT);
+  pinMode(OBD_TX, OUTPUT);
   
-  Serial.begin(38400);
+  Serial.begin(115200);
   //OBD.listen();
-  //debug.begin(9600); 
-  file.println("Testing");
-  delay(2000);
-  Serial.print("STMFR\r\n");
-  if(Serial.find("Generic"))
-    debug.println("Module responding.");
+  OBD.begin(9600); 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  debug.println("Testing");
+  Serial.println("Testing");
   delay(2000);
-  Serial.print("STMFR\r\n");
+  OBD.print("STMFR\r\n");
+  //Serial.println(OBD.read());
+  //debug.println("Testing");
+  //delay(2000);
+  //Serial.print("STMFR\r\n");
   //delay(010D);
   //byte numBytesAvailable = OBD.available();
   // if there is something to read
   //delay(2000);
-  while(Serial.available()){
-     debug.print(Serial.read());
-     debug.println();
+  while(OBD.available()){
+     Serial.print(OBD.read());
   }
   /*if (numBytesAvailable > 0){
       // store everything into "inData"
